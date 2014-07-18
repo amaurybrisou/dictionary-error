@@ -29,9 +29,3 @@ LeBrisouBackend Error Handling Hapi plugin
 * 19999 : 'Censored Error',
 
 * 22000 : 'Reading Database init File'
-
-##Logging Configuration
-
-The application uses winston npm module in file : logger.js
-
-
