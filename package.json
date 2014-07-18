@@ -1,0 +1,21 @@
+{
+  "name": "dictionary-error",
+  "version": "0.0.0",
+  "description": "LeBrisouBackend error Handlr",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amaurybrisou/dictionary-error.git"
+  },
+  "author": "Amaury Brisou",
+  "license": "BeerWare",
+  "bugs": {
+    "url": "https://github.com/amaurybrisou/LeBrisou-Backend/"
+  },
+  "engines": {
+    "node": ">= 0.10.25"
+  },
+  "dependencies": {
+    "hapi": "~6.2.0"
+  }
+}
