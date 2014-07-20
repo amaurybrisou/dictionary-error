@@ -21,7 +21,8 @@ module.exports = {
   
   19 : 'Database Conflict',
 
-  500 : 'Cencored Error New',
+  400 : 'mmh check your request !',
+  500 : 'Cencored Error !',
   
   21001 : 'Commit Failed',
   21002 : 'Database is Empty',

@@ -5,8 +5,9 @@ var internals = {
 }
 
 internals.onPreResponse = function (request, reply) {
+
   if (request.response.isBoom){
-    if(request.response.errno >= 19999 
+    if(request.response.errno >= 19999
       || request.response.errno === 19) {
 
       var error = request.response,
@@ -15,15 +16,20 @@ internals.onPreResponse = function (request, reply) {
       
       var ret = Hapi.error.badRequest(internals.codes[errno])
 
-      ret.output.statusCode = error.errno 
+      ret.output.statusCode = errno 
       ret.reformat()
-      ret.output.payload.error  = 'Bad Request'
-      ret.output.payload.source  = 'LeBrisou-Backend'
       
-      return reply(ret)
-    } else if(request.response.errno === 500){ 
-        error.output.message = internals.codes[500]
+      
+    } else {
+      var ret = request.response
+      ret.output.payload.message = internals.codes[ret.output.statusCode]
+      
     }
+    
+    ret.output.payload.error  = 'Bad Request'
+    ret.output.payload.source  = 'LeBrisou-Backend'
+
+    return reply(ret)
   }
 
   reply()
