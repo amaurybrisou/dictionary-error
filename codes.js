@@ -12,9 +12,11 @@ module.exports = {
 
   20050 : 'Conflict : SynonymId equal WordId',
   20051 : 'Conflict : AntonymId equal WordId',
-  20052 : 'Conflict : Duplicate Word : lema - pos', //never used
-  20053 : 'Conflict : Duplicate Definition', //never used
-  20054 : 'Conflict : Duplicate Definition - Example', //never used
+  20052 : 'Conflict : RelativeId equal WordId',
+  20053 : 'Word already exists', 
+  20054 : 'Definition already exists',
+  20055 : 'Example already exists',
+  20056 : 'Hyperlink already exists',
 
   
   19 : 'Database Conflict',
