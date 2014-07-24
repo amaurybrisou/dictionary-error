@@ -1,33 +1,31 @@
 var Hapi = require('hapi')
 
 var internals = {
-  codes : require('./codes')
+  codes: require('./codes')
 }
 
 internals.onPreResponse = function (request, reply) {
-
-  if (request.response.isBoom){
-    if(request.response.errno >= 19999
-      || request.response.errno === 19) {
+  if (request.response.isBoom) {
+    if (request.response.errno >= 19999 || request.response.errno === 19) {
 
       var error = request.response,
-          errno = error.errno
+        errno = error.errno
 
-      
+
       var ret = Hapi.error.badRequest(internals.codes[errno])
 
-      ret.output.statusCode = errno 
+      ret.output.statusCode = errno
       ret.reformat()
-      
-      
+
+
     } else {
       var ret = request.response
       ret.output.payload.message = internals.codes[ret.output.statusCode]
-      
+
     }
-    
-    ret.output.payload.error  = 'Bad Request'
-    ret.output.payload.source  = 'LeBrisou-Backend'
+
+    ret.output.payload.error = 'Bad Request'
+    ret.output.payload.source = 'LeBrisou-Backend'
 
     return reply(ret)
   }
@@ -35,7 +33,7 @@ internals.onPreResponse = function (request, reply) {
   reply()
 }
 
-internals.tail = function(request){
+internals.tail = function (request) {
 
 }
 
@@ -44,15 +42,15 @@ internals.internalError = function (request, err) {
   // request.id + ' because: ' + err.message+ ' - '+err.stack)
 }
 
-internals.stop = function(){
+internals.stop = function () {
 
 }
 
 
-exports.register = function(plugin, options, next){
+exports.register = function (plugin, options, next) {
 
-	plugin.ext('onPreResponse', internals.onPreResponse)
-	plugin.events.on('internalError', internals.internalError)
+  plugin.ext('onPreResponse', internals.onPreResponse)
+  plugin.events.on('internalError', internals.internalError)
 
   next()
 }
