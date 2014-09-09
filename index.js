@@ -25,7 +25,7 @@ internals.onPreResponse = function (request, reply) {
     }
 
     ret.output.payload.error = 'Bad Request'
-    ret.output.payload.source = 'LeBrisou-Backend'
+    ret.output.payload.source = this.source || 'Unkown'
 
     return reply(ret)
   }
@@ -48,6 +48,10 @@ internals.stop = function () {
 
 
 exports.register = function (plugin, options, next) {
+
+  plugin.bind({
+    source: options.source || 'Unkown'
+  })
 
   plugin.ext('onPreResponse', internals.onPreResponse)
   plugin.events.on('internalError', internals.internalError)
